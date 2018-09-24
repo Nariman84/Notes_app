@@ -1,5 +1,5 @@
 {
-  "name": "notes_app - 1",
+  "name": "notes_app",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -19,6 +19,5 @@
     "mongoose": "^5.2.14",
     "mustache": "^2.3.2",
     "mustache-express": "^1.2.7",
-    "npm": "^6.4.1"
   }
 }
