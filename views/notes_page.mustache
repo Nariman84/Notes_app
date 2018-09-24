@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Notes</title>
+		<link rel="stylesheet" href="css/style.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="js/main.js"></script>
+	</head>
+	<body>
+		<div id="backdrop"></div>
+		<div class="container" id="header">
+			<div class="logged-in-username">
+				<div id="username">
+					Имя пользователя:
+					<b>{{user}}</b>
+				</div>
+				<div class="buttonLogOut">
+					<input type="submit" class="logOut" id="logOut" onclick="logOut()" value='LOG OUT'>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="table_notes">
+				<h1>Список заметок</h1>
+				<table align="center" id="notes" class="notes">
+					<thead>
+						<tr id="heading_of_table" class="heading_of_table">
+							<td width="10%">Дата создания</td>
+							<td width="10%">Количество времени с момента создания</td>
+							<td width="25%">Название</td>
+							<td>Описание</td>
+						</tr>
+						<tr height="30" id="empty_row">
+							<td id="noNotes" colspan="4">Здесь пока нет заметок</td>
+						</tr>
+					</thead>
+					<tbody>
+<!-- 						<tr data-rowid = note._id>
+							<td>note.created</td>
+							<td></td>
+							<td>note.noteName</td>
+							<td>note.noteTheme</td>
+						</tr> -->
+					</tbody>
+				</table>
+			</div>
+			<section class="form-row" id="button">
+				<button class="add_note" id="add_note" onclick="addNote()">Добавить заметку</button>
+			</section>
+		</div>
+		<div class="container_1">
+			<div class="newNote" id="newNote">
+				<form id="notesForm" name="noteForm" class='reg-form'>
+					<section>
+						<input type='text' id='note_name' class='note_name' name="note_name" placeholder="Введите название заметки">
+					</section>
+					<section>
+						<input type='text' id='note_theme' class='noteTheme' name="note_theme" placeholder="Введите тему заметки">
+					</section>
+					<section>
+						<textarea id='content' class='content' name='content' placeholder="Введите текст Вашей заметки">
+						</textarea>
+					</section>
+					<section>
+						<input type="submit" class="save_note" id="save_note" value='Сохранить заметку'>
+						<button class="cancel_note" id="cancel_note" onclick="cancel_note()">Отмена</button>
+					</section>
+				</form>
+			</div>
+		</div>
+		
+	</body>
+</html>

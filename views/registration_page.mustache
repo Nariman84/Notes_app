@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Notes</title>
+		<link rel="stylesheet" href="css/style.css">
+	</head>
+	<body>
+		<div id=""></div>
+		<div class="container">
+			<div class='box-1'>
+				<div class="registr">
+					<h1>Sign Up</h1>
+					<form method='post' class='reg-form' action="/signup">
+						<section class='form-row'>
+							<label for='name'>First Name: </label>
+							<input id='form_fname' name='firstName'>
+						</section>
+						<section class='form-row'>
+							<label for='lastname'>Last Name: </label>
+							<input id='form_sname' name='lastName'>
+						</section>
+						<section class='form-row'>
+							<label for='form_email'>E-mail: </label>
+							<input type='email' id='form_email' name='email'>
+						</section>
+						<section class='form-row'>
+							<label for="password">Password</label>
+							<input type="password" id="password" name="password">
+						</section>
+						<section class='form-row'>
+							<label for="confirmPassword">Confirm password</label>
+							<input type="password" id="confirmPassword" name="confirmPassword">
+						</section>
+						<section class="form-row" id="button">
+							<button type="submit">Submit</button>
+							<button type="reset">Reset</button>
+						</section>
+					</form>
+				</div>
+			</div>
+		</div>
+		<script src="./js/main.js"></script>
+	</body>
+</html>

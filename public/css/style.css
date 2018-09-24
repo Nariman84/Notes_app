@@ -1,0 +1,199 @@
+* {
+	box-sizing: border-box;
+}
+body {
+	font-family: "Open Sans", Arial, sans-serif;
+	display: block;
+	margin: 1px;
+	font-size: 12px;
+}
+h1 {
+	text-align: center;
+}
+.registr {
+	max-width: 400px;
+	position: absolute;
+	left: 50px;
+}
+.container {
+	max-width: 1140px;
+	margin: auto;
+}
+.container_1 {
+	max-width: 1140px;
+	margin: auto;
+}
+.box-1 {
+	width: 500px;
+	background: #69d86940;
+	height: 220px;
+	margin: auto;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -100%);
+}
+.box-2 {
+	width: 500px;
+	background: #69d86940;
+	height: 150px;
+	margin: auto;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -100%);
+}
+.form-row {
+	margin: 4px auto;
+	overflow: hidden;
+}
+.form-row input {
+	float: right;
+	height: 19px;
+	line-height: 19px;
+	margin: 0px;
+	padding: 0px 5px;
+	width: 287px;
+	border: 1px solid #ABADB3;
+}
+.reg-form {
+	width: 400px;
+	margin: 0 auto;
+
+}
+.form-row button {
+	padding: 5px;
+	height: 25px;
+	width: 49%;
+	line-height: 10px;
+	background: #337AB7;
+	color: white;
+}
+#button {
+	text-align: center;
+}
+.form-row button[type=submit]:hover {
+	background: #286090;
+}
+.form-row button[type=reset]:hover {
+	background: #286090;
+}
+.table_notes {
+	margin: auto;
+	padding-top: 70px;
+}
+.notes {
+	width: 800px;
+	border: 2px solid black;
+	border-collapse: collapse;
+}
+tr, td {
+	padding-top: 3px;
+	border: 1px solid black;
+	border-collapse: collapse;
+	text-align: center;
+	background-color: #9e9e9e40;
+}
+.heading_of_table {
+	height: 50px;
+	font-weight: bold;
+}
+#add_note {
+	margin: 20px;
+	width: 150px;
+}
+.newNote {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	display: none;
+	width: 600px;
+	height: 400px;
+	background-color: gray;
+	text-align: center;
+}
+input#note_name {
+	height: 19px;
+	line-height: 19px;
+	margin: 10px 10px 0;
+	padding: 0px 5px;
+	width: 90%;
+	border: 1px solid #ABADB3;
+}
+input#note_theme {
+	height: 19px;
+	line-height: 19px;
+	margin: 10px 10px 0;
+	padding: 0px 5px;
+	width: 90%;
+	border: 1px solid #ABADB3;
+}
+.content {
+	width: 90%;
+	height: 285px;
+	font-family: Arial;
+	resize: none;
+	margin: 10px 10px 0;
+}
+button#save_note {
+    margin: 10px 10px 0;
+}
+#backdrop {
+	display: none;
+	background-color: #000000;
+	opacity: 0.7;
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+}
+#mustache {
+	width: 500px;
+	background: #69d86940;
+	height: 150px;
+	margin: auto;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -100%);
+}
+
+.logOut {
+	margin: 10px 0;
+	padding: 5px 15px;
+	background-color: #ff000078;
+	border-radius: 5px;
+	color: white;
+}
+
+div#username {
+	font-size: 16px;
+	padding-top: 30px;
+	display: block;
+	width: 50%;
+	float: left;
+	text-align: left;
+	transform: translate(5%, -15%);
+}
+.logged-in-username {
+	text-align: center;
+	margin: auto;
+}
+div#header {
+    background-color: #cddc3980;
+	max-width: 75%;
+	height: 70px;
+	border: 2px solid #8BC34A;
+	border-radius: 15px;
+}
+.buttonLogOut {
+	display: block;
+	width: 50%;
+	float: left;
+	text-align: right;
+	transform: translate(-10%, 15%);
+}
