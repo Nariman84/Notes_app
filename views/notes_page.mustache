@@ -4,8 +4,7 @@
 		<meta charset="UTF-8">
 		<title>Notes</title>
 		<link rel="stylesheet" href="css/style.css">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-		
+				
 	</head>
 	<body>
 		<div id="backdrop"></div>
@@ -36,17 +35,12 @@
 						</tr>
 					</thead>
 					<tbody>
-<!-- 						<tr data-rowid = note._id>
-							<td>note.created</td>
-							<td></td>
-							<td>note.noteName</td>
-							<td>note.noteTheme</td>
-						</tr> -->
+
 					</tbody>
 				</table>
 			</div>
 			<section class="form-row" id="button">
-				<button class="add_note" id="add_note" onclick="addNote()">Добавить заметку</button>
+				<button type='button' class="add_note" id="add_note">Добавить заметку</button>
 			</section>
 		</div>
 		<div class="container_1">
@@ -64,11 +58,12 @@
 					</section>
 					<section>
 						<input type="submit" class="save_note" id="save_note" value='Сохранить заметку'>
-						<button class="cancel_note" id="cancel_note" onclick="cancel_note()">Отмена</button>
+						<button type='button' class="cancel_note" id="cancel_note">Отмена</button>
 					</section>
 				</form>
 			</div>
 		</div>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="js/main.js"></script>
 	</body>
 </html>
