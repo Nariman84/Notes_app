@@ -41,6 +41,8 @@ app.use(session({
 	saveUninitialized: false
 }));
 
+app.use(require("./middleware/loadUser"));
+
 app.use(express.static(__dirname + "/public"));
 require('./routes/index_templates.js')(app);
 

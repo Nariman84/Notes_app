@@ -1,10 +1,10 @@
-// function register() {
-	
-// }
-$(document).ready(function() {
 
+$(document).ready(function() {
+	
 	var backdrop = document.getElementById('backdrop');
 	var newNote = document.getElementById('newNote');
+	var trfromDb = document.getElementById('trfromDb');
+
 
 	$('#add_note').click(function() {
 		backdrop.style.display = 'block';
@@ -18,15 +18,6 @@ $(document).ready(function() {
 		newNote.style.display = 'none';
 	});
 
-
-	// Получение всех заметок
-	// function GetNotes() {
-
-
-	//Получение одной заметки
-	// function GetNote(id) {
-
-
 	// отправка формы
 	$("#notesForm").submit(function(event) {
 		event.preventDefault();
@@ -35,7 +26,8 @@ $(document).ready(function() {
 		CreateNote(note);
 	});
 
-
+	var tbody = document.getElementById("tbody_notes");
+	var noNotes = document.getElementsByClassName("noNotes");
 		// Добавление заметки
 	function CreateNote(data) {
 		$.ajax({
@@ -43,21 +35,36 @@ $(document).ready(function() {
 			type: 'POST',
 			data: data,
 			success: function(note) {
-				$("table tbody").append(row(note));
+				$("table tbody").prepend(row(note));
 				backdrop.style.display = 'none';
 				newNote.style.display = 'none';
-				
+				noNotes[0].style.opacity = 0;
+				noNotes[0].style.margin = "0px auto";
 			}
 		});
 	};
 
 	// создание строки для таблицы
-	var n = 0;
 	function row(note) {
-		n++;
-		return "<tr id=" + n + " data-rowid=" + note._id + "'><td>" + note.created + "</td><td>" + note.created + "</td>" +
+		return "<tr id='trfromDb' style='height: 25px;'><td>" + note.created + "</td><td>" + note.created + "</td>" +
 			   "<td>" + note.note_name + "</td> <td>" + note.note_theme + "</td></tr>";
 	};
 
-});
+	//Скрытие надписи "Здесь пока нет заметок" после появления заметок
+		if (tbody.rows[0].id === "trfromDb") {
+			noNotes[0].style.opacity = 0;
+			noNotes[0].style.margin = "0px auto";
+		};
 
+	for (var i = 0; i < tbody.rows.length; i++) {
+		tbody.rows[i].onmouseover = function() {
+			this.style.backgroundColor = '#cddc39';
+		}
+		tbody.rows[i].onmouseout = function() {
+			this.style.backgroundColor = '#ffeb3b6e';
+		}
+	};
+
+	
+
+});

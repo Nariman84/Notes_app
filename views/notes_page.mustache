@@ -1,48 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<title>Notes</title>
-		<link rel="stylesheet" href="css/style.css">
-				
-	</head>
-	<body>
-		<div id="backdrop"></div>
-		<div class="container" id="header">
-			<div class="logged-in-username">
-				<div id="username">
-					Имя пользователя:
-					<b>{{user}}</b>
-				</div>
-				<div class="buttonLogOut">
-					<input type="submit" class="logOut" id="logOut" onclick="logOut()" value='LOG OUT'>
+{{>header}}
+		<div class="container" id="pages">
+			<div id="boxPage">
+				<div id="pageNotes">Page: </div>
+				<div id="pagination_container">
 				</div>
 			</div>
 		</div>
-		<div class="container">
+		<div class="container" style="clear: both">
 			<div class="table_notes">
 				<h1>Список заметок</h1>
-				<table align="center" id="notes" class="notes">
-					<thead>
-						<tr id="heading_of_table" class="heading_of_table">
-							<td width="10%">Дата создания</td>
-							<td width="10%">Количество времени с момента создания</td>
-							<td width="25%">Название</td>
-							<td>Описание</td>
-						</tr>
-						<tr height="30" id="empty_row">
-							<td id="noNotes" colspan="4">Здесь пока нет заметок</td>
-						</tr>
-					</thead>
-					<tbody>
+					<table align="center" id="notes" class="notes">
+						<thead id="table_head">
+							<tr id="heading_of_table" class="heading_of_table">
+								<td width="20%">Дата создания</td>
+								<td width="20%">Количество времени с момента создания</td>
+								<td width="30%">Название</td>
+								<td>Описание</td>
+							</tr>
+						</thead>
 
-					</tbody>
-				</table>
+						<tbody id="tbody_notes">
+
+							{{#notes}}
+								<tr id="trfromDb">
+									<td id="tdfromDb">{{created}}</td>
+									<td class="fromDb"></td>
+									<td>{{note_name}}</td>
+									<td>{{note_theme}}</td>
+								</tr>
+							{{/notes}}
+						</tbody>
+
+					</table>
+
 			</div>
+			<h2 class="noNotes">Список заметок пока пуст</h2>
+			
 			<section class="form-row" id="button">
+				{{#user}}
 				<button type='button' class="add_note" id="add_note">Добавить заметку</button>
+				{{/user}}
+				{{^user}}
+				<div>
+					<span>Авторизуйтесь или зарегистрируйтесь,<br> чтобы иметь возможность добавлять заметки</span>
+				</div>
+				{{/user}}
 			</section>
 		</div>
+
 		<div class="container_1">
 			<div class="newNote" id="newNote">
 				<form id="notesForm" name="noteForm" class='reg-form'>
@@ -63,7 +68,24 @@
 				</form>
 			</div>
 		</div>
+
+		
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="js/main.js"></script>
+		<script>
+			function pagination() {
+				
+				var divPagination = document.getElementById("pagination_container");
+				for (var i = 1; i <= '{{pages}}'; i++) {
+					var pageNumber = document.createElement('a');
+					pageNumber.setAttribute("href", "/notes/" + i);
+
+					pageNumber.innerHTML = i;
+					pageNumber.className = "pageNum";
+					divPagination.append(pageNumber);
+				}
+			};
+			window.onload = pagination();
+		</script>
 	</body>
 </html>

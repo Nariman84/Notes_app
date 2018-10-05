@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Notes</title>
+		<link rel="stylesheet" href="css/style.css">
+	</head>
+	<body>
+		<div id="backdrop"></div>
+		<div class="container" id="header">
+			<div class="logged-in-username">
+				<div id="username">
+					Имя пользователя:
+					<b>{{user.firstName}} {{user.lastName}}</b>
+				</div>
+				<div class="buttonLogOut">
+					{{#user}}
+					<a href="/logout" class="logOut" id="logOut"><b>Выйти</b></a>
+					{{/user}}
+					{{^user}}
+					<a href="/login" class="logIn" id="logIn"><b>Войти</b></a>
+					{{/user}}
+				</div>
+			</div>
+		</div>
