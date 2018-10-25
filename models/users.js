@@ -1,7 +1,7 @@
 var crypto = require("crypto");
 var mongoose = require("mongoose");
 var util = require("util");
-var async = require("async");
+
 
 var Schema = mongoose.Schema;
 var userSchema = new Schema({
@@ -42,36 +42,5 @@ userSchema.methods.checkPassword = function(password) {
 	return this.encryptPassword(password) === this.hashedPassword;
 };
 
-userSchema.statics.authorize = function(email, password, callback) {
-	var User = this;
-	async.waterfall([
-		function(callback) {
-			User.findOne({email: email}, callback);
-		},
-		function(user, callback) {
-			if (user) {
-				if (user.checkPassword(password)) {
-					callback(null, user);
-				} else {
-				callback (new AuthError("Пароль неверный!"));
-				}
-			} else {
-				console.log("user не найден. повторите ввод логина и пароля");
-			}
-		}
-	], callback);
-};
-
-function AuthError (message) {
-	Error.apply (this, arguments);
-	Error.captureStackTrace (this, AuthError);
-	this.message = message;
-};
-
-util.inherits(AuthError, Error);
-AuthError.prototype.name = "AuthError";
-exports.AuthError = AuthError;
-
 var User = mongoose.model("users", userSchema);
 module.exports = User;
-exports.AuthError = AuthError;

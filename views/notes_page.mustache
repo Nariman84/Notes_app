@@ -1,88 +1,260 @@
-{{>header}}
-		<div class="container" id="pages">
-			<div id="boxPage">
-				<div id="pageNotes">Page: </div>
-				<div id="pagination_container">
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Notes</title>
+		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/grid.css">
+		<link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
+	</head>
+	<body>
+		<div class="bg"></div>
+		<div id="content_body">
+			<div id="main">
+				<div id="backdrop"></div>
+				<div class="container" id="header">
+					<div class="col-12" id="logged-in-username">
+						{{#user}}
+						<div class="col-6" id="username">
+							<u>Имя пользователя:</u>
+							<span style="color: #ff5252">{{user.firstName}} {{user.lastName}}</span>
+						</div>
+						{{/user}}
+						{{^user}}
+						<div class="col-6" id="logo">
+							<div id="my_logo">
+								<b>My Notes</b>
+							</div>
+						</div>
+						{{/user}}
+						<div class="col-6" id="buttonLogOut">
+							{{#user}}
+							<a href="/logout" class="logOut" id="logOut"><b>Выйти</b></a>
+							{{/user}}
+							{{^user}}
+							<a href="/login" class="logIn" id="logIn"><b>Войти</b></a>
+							{{/user}}
+						</div>
+					</div>
 				</div>
-			</div>
-		</div>
-		<div class="container" style="clear: both">
-			<div class="table_notes">
-				<h1>Список заметок</h1>
-					<table align="center" id="notes" class="notes">
-						<thead id="table_head">
-							<tr id="heading_of_table" class="heading_of_table">
-								<td width="20%">Дата создания</td>
-								<td width="20%">Количество времени с момента создания</td>
-								<td width="30%">Название</td>
-								<td>Описание</td>
-							</tr>
-						</thead>
+				<div class="container" id="pages_top">
+					{{#user}}
+					<div class="bg"></div>
+					<div class="container" id="button_top">
+						<div>
+							<button type='button' class="add_note" id="add_note"><b>Добавить заметку</b></button>
+							<button type='button' class="delNote" id="delNote"><b>Удалить</b></button>
+						</div>
+					</div>
 
-						<tbody id="tbody_notes">
+					
+					<div class="boxPage">
+						<div class="pagination_container"></div>
+					</div>
+					{{/user}}
+				</div>
 
-							{{#notes}}
-								<tr id="trfromDb">
-									<td id="tdfromDb">{{created}}</td>
-									<td class="fromDb"></td>
-									<td>{{note_name}}</td>
-									<td>{{note_theme}}</td>
+				<div class="container" id="boxTable" style="clear: both">
+					<div class="table_notes">
+						<h1>Список заметок</h1>
+						<table align="center" id="notes" class="notes">
+							<thead id="table_head">
+								<tr id="heading_of_table" class="heading_of_table">
+									<td width="5px"></td>
+									<td width="20%">Дата создания</td>
+									<!-- <td width="20%">Количество времени с момента создания</td> -->
+									<td width="30%">Название</td>
+									<td>Описание</td>
 								</tr>
-							{{/notes}}
-						</tbody>
+							</thead>
 
-					</table>
+							<tbody id="tbody_notes">
+								{{#notes}}
+									<tr class="trfromDb" id="{{_id}}">
+										<td id="checkbox">
+											<input type="checkbox" id="cb_{{_id}}" name="checkbox" class="checkbox">
+										</td>
+										<td id="tdfromDb">{{createdFormatDate}}</td>
+										<!-- <td id="time_passed" class="fromDb">{{diff_Time}}</td> -->
+										<td>
+											<div>{{note_name}}</div>
+										</td>
+										<td>
+											<div>{{note_theme}}</div>
+										</td>
+									</tr>
+								{{/notes}}
+							</tbody>
+						</table>
+					</div>
+					{{#user}}
+					<div id="notNotes">
+						<span class="noNotes">Список заметок пока пуст</span>
+					</div>
+					{{/user}}
 
-			</div>
-			<h2 class="noNotes">Список заметок пока пуст</h2>
-			
-			<section class="form-row" id="button">
-				{{#user}}
-				<button type='button' class="add_note" id="add_note">Добавить заметку</button>
-				{{/user}}
-				{{^user}}
-				<div>
-					<span>Авторизуйтесь или зарегистрируйтесь,<br> чтобы иметь возможность добавлять заметки</span>
+						{{^user}}
+						<div id="authoriz">
+							<span>Авторизуйтесь или зарегистрируйтесь,<br> чтобы иметь возможность добавлять заметки</span>
+						</div>
+						{{/user}}
+
+					<div class="container" id="pages_bottom">
+						{{#user}}
+						<div class="boxPage">
+							<div class="pagination_container"></div>
+						</div>
+						{{/user}}
+					</div>
 				</div>
-				{{/user}}
-			</section>
-		</div>
-
-		<div class="container_1">
-			<div class="newNote" id="newNote">
-				<form id="notesForm" name="noteForm" class='reg-form'>
-					<section>
-						<input type='text' id='note_name' class='note_name' name="note_name" placeholder="Введите название заметки">
-					</section>
-					<section>
-						<input type='text' id='note_theme' class='noteTheme' name="note_theme" placeholder="Введите тему заметки">
-					</section>
-					<section>
-						<textarea id='content' class='content' name='content' placeholder="Введите текст Вашей заметки">
-						</textarea>
-					</section>
-					<section>
-						<input type="submit" class="save_note" id="save_note" value='Сохранить заметку'>
-						<button type='button' class="cancel_note" id="cancel_note">Отмена</button>
-					</section>
-				</form>
 			</div>
+			{{>footer}}
 		</div>
-
+			<div class="container_1">
+				<div class="newNote" id="newNote">
+					<form id="notesForm" name="noteForm" class='note-form'>
+						<section>
+							<input type='text' id='note_name' class='note_name' name="note_name" placeholder="Введите название заметки" required>
+						</section>
+						<section>
+							<input type='text' id='note_theme' class='noteTheme' name="note_theme" placeholder="Введите тему заметки">
+						</section>
+						<section>
+							<textarea id='content' class='content' name='content' placeholder="Введите текст Вашей заметки"></textarea>
+						</section>
+						<section>
+							<input type="submit" class="save_note" id="save_note" value='Сохранить заметку'>
+							<button type='button' class="cancel_addNote" id="cancel_addNote">Отмена</button>
+						</section>
+					</form>
+				</div>
+			</div>
 		
+			<div class="container_1">
+				<div class="viewNote" id="viewNote">
+					<div id="descriptionNote">
+						<div class="col-12">
+							<div class="col-3"><b>Название заметки: </b></div>
+							<div class="col-9" id="info_noteName"></div>
+						</div>
+						<div class="col-12">
+							<div class="col-3"><b>Текст заметки </b></div>
+							<div class="col-9" id="info_content"></div>
+						</div>
+						<div class="col-12">
+							<div class="col-3"><b>Дата создания </b></div>
+							<div class="col-9" id="info_created"></div>	
+						</div>			
+					</div>
+					<div class="col-12" id="okey">
+						<button type='button' class="cancel_viewNote" id="cancel_viewNote">OK</button>
+					</div>
+				</div>
+			</div>
+
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-		<script src="js/main.js"></script>
+		<script src="../js/main.js"></script>
 		<script>
 			function pagination() {
-				
-				var divPagination = document.getElementById("pagination_container");
-				for (var i = 1; i <= '{{pages}}'; i++) {
-					var pageNumber = document.createElement('a');
-					pageNumber.setAttribute("href", "/notes/" + i);
+				//Пагинация страниц
+				for (var j = 0; j < 2; j++) {
+					var divPagination = document.getElementsByClassName("pagination_container");
+					if (Number("{{pages}}") > 0) {
+						if (Number("{{pages}}") === 1) {
+							var boxPage = document.getElementsByClassName("boxPage");
+							boxPage[0].style.visibility = "hidden";
+							boxPage[1].style.visibility = "hidden";
+						}
 
-					pageNumber.innerHTML = i;
-					pageNumber.className = "pageNum";
-					divPagination.append(pageNumber);
+						if (Number("{{current}}") <= 3 && Number("{{pages}}") > 5) {
+							var i = 1;
+							for (; i <= 5; i++) {
+								var pageNumber = document.createElement('a');
+								pageNumber.setAttribute("href", "/notes/" + i);
+								pageNumber.innerHTML = i;
+								pageNumber.className = "pageNum";
+								divPagination[j].append(pageNumber);
+
+								if (pageNumber.innerHTML === "{{current}}") {
+									pageNumber.className = "current_page";
+									pageNumber.id = "current_page";
+									pageNumber.removeAttribute("href");
+								};
+							};
+						} else if (Number("{{current}}") <= 3 && Number("{{pages}}") <= 5) {
+							var i = 1;
+							for (; i <= Number("{{pages}}"); i++) {
+								var pageNumber = document.createElement('a');
+								pageNumber.setAttribute("href", "/notes/" + i);
+								pageNumber.innerHTML = i;
+								pageNumber.className = "pageNum";
+								divPagination[j].append(pageNumber);
+
+								if (pageNumber.innerHTML === "{{current}}") {
+									pageNumber.className = "current_page";
+									pageNumber.id = "current_page";
+									pageNumber.removeAttribute("href");
+								};
+							};
+						} else if (Number("{{current}}") > 3 && Number("{{current}}") <= Number("{{pages}}") - 2) {
+							var i = (Number("{{current}}") - 2);
+							for (; i <= (Number("{{current}}") + 2); i++) {
+								var pageNumber = document.createElement('a');
+								pageNumber.setAttribute("href", "/notes/" + i);
+								pageNumber.innerHTML = i;
+								pageNumber.className = "pageNum";
+								divPagination[j].append(pageNumber);
+
+								if (pageNumber.innerHTML === "{{current}}") {
+									pageNumber.className = "current_page";
+									pageNumber.id = "current_page";
+									pageNumber.removeAttribute("href");
+								};
+							};
+						} else if (Number("{{current}}") > Number("{{pages}}") - 3 && Number("{{current}}") <= Number("{{pages}}")) {
+							if (Number("{{pages}}") === 4) {
+								var i = Number("{{pages}}") - 3;
+							} else {
+								var i = Number("{{pages}}") - 4;
+							}
+							for (; i <= Number("{{pages}}"); i++) {
+								var pageNumber = document.createElement('a');
+								pageNumber.setAttribute("href", "/notes/" + i);
+								pageNumber.innerHTML = i;
+								pageNumber.className = "pageNum";
+								divPagination[j].append(pageNumber);
+
+								if (pageNumber.innerHTML === "{{current}}") {
+									pageNumber.className = "current_page";
+									pageNumber.id = "current_page";
+									pageNumber.removeAttribute("href");
+								};
+							};
+						}
+						if ((Number('{{current}}') + 2) < Number("{{pages}}") && Number("{{pages}}") > 5) {
+							var lastPage = document.createElement('a');
+							var hidePage = document.createElement('a');
+							hidePage.className = "hidePage";
+							hidePage.innerHTML = "...";
+							lastPage.innerHTML = "Last";
+							lastPage.className = "lastPage";
+							lastPage.setAttribute("href", "/notes/{{pages}}");
+							divPagination[j].append(lastPage);
+							divPagination[j].insertBefore(hidePage, lastPage);
+						};
+
+						if (Number("{{current}}") > 3 && Number("{{pages}}") > 5) {
+							var firstPage = document.createElement('a');
+							var hidePage = document.createElement('a');
+							hidePage.className = "hidePage";
+							hidePage.innerHTML = "...";
+							firstPage.innerHTML = "First";
+							firstPage.className = "firstPage";
+							firstPage.setAttribute("href", "/notes/1");
+							divPagination[j].prepend(hidePage);
+							divPagination[j].insertBefore(firstPage, hidePage);
+						};
+					}
 				}
 			};
 			window.onload = pagination();

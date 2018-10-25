@@ -3,9 +3,6 @@ var User = require("../models/users");
 var mongoose = require("mongoose");
 exports.get = function(request, response) {
 	response.render('registration_page');
-
-	// response.sendFile('registration_page.html', { root: path.join(__dirname, '../public') });
-
 };
 
 exports.post = function(request, response) {

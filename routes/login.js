@@ -1,12 +1,9 @@
 var mongoose = require("mongoose");
 var User = require("../models/users");
 var async = require("async");
-var HttpError = require("../error/index").HttpError;
-var AuthError = require("../models/users").AuthError;
 
 exports.get = function(request, response) {
 	response.render('login_page');
-	// response.sendFile(__dirname + "/public/login_page.html");
 };
 
 exports.post = function(request, response, next) {
@@ -18,15 +15,33 @@ exports.post = function(request, response, next) {
 		password: password
 	};
 	console.log("Введены логин и пароль: ", authInfo);
-	User.authorize(email, password, function(err, user){
-		if (err) {
-			if (err instanceof AuthError) {
-				return next (new HttpError(403, err.message));
+	
+	async.waterfall([
+		function(callback) {
+			User.findOne({email: email}, callback);
+		},
+		function(user, callback) {
+			if (user) {
+				if (user.checkPassword(password)) {
+					callback(null, user);
+				} else {
+					var wrongPass = "Пароль неверный!"
+					console.log(wrongPass);
+					response.render("login_page", {
+						wrong: wrongPass
+					})
+				}
 			} else {
-				return next (err);
+				var noUser = "Пользователь с таким e-mail не зарегистрирован!";
+				console.log(noUser);
+				response.render("login_page", {
+						wrong: noUser
+					})
 			}
-		};
-		console.log("Найден user" + user);
+		}
+	], function(err, user) {
+		if (err) return next(err);
+		console.log("Найден user " + user);
 		request.session.user = user._id;
 		response.redirect("/notes");
 	});

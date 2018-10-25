@@ -12,7 +12,6 @@ var mongoClient = require("mongodb").MongoClient;
 
 var mongoose = require("mongoose");
 var mustacheExpress = require('mustache-express');
-var HttpError = require("./error/index").HttpError;
 mongoose.connect("mongodb://localhost:27017/usersdb", {useNewUrlParser: true});
 
 // Register '.mustache' extension with The Mustache Express
@@ -46,7 +45,10 @@ app.use(require("./middleware/loadUser"));
 app.use(express.static(__dirname + "/public"));
 require('./routes/index_templates.js')(app);
 
-
+app.use(function(request, response, next) {
+	response.status(404);
+	response.sendFile(__dirname + '/public/404.html');
+});
 
 // начинаем прослушивать подключения на 8080 порту
 app.listen(8080, function(){

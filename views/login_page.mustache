@@ -3,31 +3,68 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Notes</title>
-		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/grid.css">
+		<link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	</head>
-	<body>
-		<div id=""></div>
-		<div class="container">
-			<div class='box-2'>
-				<div class="registr">
-					<h1>Log in</h1>
-					<form method='post' class='reg-form' action="/login">
-						<section class='form-row'>
-							<label for='form_email'>E-mail: </label>
-							<input type='email' id='form_email' name='email'>
-						</section>
-						<section class='form-row'>
-							<label for="password">Password</label>
-							<input type="password" id="password" name="password">
-						</section>
-						<section class="form-row" id="button">
-							<button type="submit">Submit</button>
-							<button type="reset">Reset</button>
-						</section>
-					</form>
+	<body onload = "loadLoginPage()">
+		<div class="bg"></div>
+		<div id="content_body">
+			<div id="main">
+				<div class="container" id="header">
+					<div class="col-12" id="logged-in-username">
+						<div class="col-6" id="logo">
+							<div id="my_logo">
+								<b>My Notes</b>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="container">
+					<!-- Выбор: авторизация или регистрация -->
+					<div id="signupOrAuthor">
+						<div id="regbar">
+							<div id="login_bar">
+								<h1>Log In</h1>
+							</div>
+						</div>
+					</div>
+				<!-- Окно авторизации -->
+				<div class="container">
+					<div class='box-2'>
+						<div class="registr">
+							<form method='post' class='login-form' id="login_form" action="/login">
+								<section class='form-row'>
+									<label for="form_email">E-mail: </label>
+									<input type='email' id='form_email' name='email' required>
+								</section>
+								<section class='form-row'>
+									<label for="password">Password </label>
+									<input type="password" id="password" name="password" required>
+								</section>
+								<div id="wrong">{{wrong}}</div>
+								<section class="form-row" id="button">
+									<button id="submit_login" type="submit">Log In</button>
+									<div class="message" id="message_login">Not registered? <a href="/signup">Create an account</a></div>
+								</section>
+							</form>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
-		<script src="./js/main.js"></script>
+	
+	<script src="../js/main.js"></script>
+	<script>
+		function loadLoginPage() {
+			var box2 = document.getElementsByClassName('box-2');
+			var divWrong = document.getElementById('wrong');
+			console.log(divWrong.innerHTML);
+			if (divWrong.innerHTML != "") {
+				box2[0].style.height = "230px";
+			}
+		}
+	</script>
 	</body>
 </html>
