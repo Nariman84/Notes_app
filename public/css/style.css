@@ -301,6 +301,7 @@ input#save_note {
 	height: 30px;
 	background-color: rgb(76, 175, 80);
 	border: 1px solid rgba(139, 195, 74, 0.6);
+	font-family: 'Comic Sans MS';
 	border-radius: 15px;
 	outline-style: none;
 	box-shadow: inset 0px 0px 5px 0px;
