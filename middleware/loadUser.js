@@ -5,8 +5,7 @@ module.exports = function(request, response, next) {
 
 	User.findById(request.session.user, function(err, user) {
 		if (err) return next(err);
-
-			request.user = response.locals.user = user;
-			next();
-		});
-	};
+		request.user = response.locals.user = user;
+		next();
+	});
+};

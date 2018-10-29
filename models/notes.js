@@ -6,8 +6,8 @@ var noteSchema = new Schema({
 	_id: Schema.Types.ObjectId,
 	note_name: {
 		type: String
-		// required: true,
-		// unique: true
+		required: true,
+		unique: true
 	},
 	note_theme: String,
 	content: String,

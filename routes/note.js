@@ -20,16 +20,3 @@ exports.delete = function(request, response, next) {
 		console.log("Заметка удалена");
 	});
 };
-
-// exports.put = function(request, response, next) {
-// 	if (!request.body) return response.sendStatus(400);
-// 	var newNoteNname = request.body.note_name;
-// 	var note_theme = request.body.note_theme;
-// 	var content = request.body.content;
-
-// 	var id = request.params.id;
-// 	Note.findOneAndUpdate({_id: id}, {note_name: newNoteNname}, {new: true}, function(err, note) {
-// 		if (err) return next(err);
-// 		console.log("Заметка отредактирована");
-// 	});
-// };

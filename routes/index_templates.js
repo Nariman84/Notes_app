@@ -17,5 +17,4 @@ module.exports = function(app) {
 
 	app.get('/notes/:page/:id', require('./note').get);
 	app.delete('/notes/:page/:id', require('./note').delete);
-	// app.put('/notes/:page/:id', require('./note').put);
 };

@@ -62,7 +62,6 @@
 								<tr id="row_thead" class="row_thead">
 									<td width="5px"></td>
 									<td width="20%">Дата создания</td>
-									<!-- <td width="20%">Количество времени с момента создания</td> -->
 									<td width="30%">Название</td>
 									<td>Описание</td>
 								</tr>
@@ -174,8 +173,7 @@
 					if (Number("{{pages}}") > 0) {
 						if (Number("{{pages}}") === 1) {
 							var boxPage = document.getElementsByClassName("box_page");
-							boxPage[0].style.visibility = "hidden";
-							boxPage[1].style.visibility = "hidden";
+							boxPage[j].style.visibility = "hidden";
 						}
 
 						if (Number("{{current}}") <= 3 && Number("{{pages}}") > 5) {

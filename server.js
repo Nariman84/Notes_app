@@ -13,8 +13,6 @@ var mongoClient = require("mongodb").MongoClient;
 var mongoose = require("mongoose");
 var mustacheExpress = require('mustache-express');
 mongoose.connect("mongodb://localhost:27017/usersdb", {useNewUrlParser: true});
-
-// Register '.mustache' extension with The Mustache Express
 app.set('view engine', 'mustache');
 app.set('views', __dirname + '/views');
 app.engine('mustache', mustacheExpress());
