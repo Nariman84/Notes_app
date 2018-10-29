@@ -1,38 +1,25 @@
 
 $(document).ready(function() {
 
-	var backdrop = document.getElementById('backdrop');
-	var newNote = document.getElementById('newNote');
-	var viewNote = document.getElementById('viewNote');
-	var trfromDb = document.getElementsByClassName('trfromDb');
-	var content_body = document.getElementById("content_body");
-
 	$('#add_note').click(function() {
-		content_body.style.filter = 'blur(1px)';
-		backdrop.style.display = 'block';
-		backdrop.style.zIndex = '10';
-		newNote.style.display = 'block';
-		newNote.style.zIndex = '20';
+		$(".content_body").css("filter", "blur(1px)");
+		$("#backdrop").css({"display":"block", "zIndex":10});
+		$("#new_note").css({"display":"block", "zIndex":20});
 	});
 
-	$('#cancel_addNote').click(function() {
-		content_body.style.filter = '';
-		backdrop.style.display = 'none';
-		newNote.style.display = 'none';
+	$('#cancel_add_note').click(function() {
+		$(".content_body").css("filter", "");
+		$("#backdrop").css("display", "none");
+		$("#new_note").css("display", "none");
 	});
 
 	// отправка формы
-	$("#notesForm").submit(function(event) {
-		event.preventDefault();
-		console.log(event.target);
-		var note = $(event.target).serialize();
+	$("#notes_form").submit(function(e) {
+		e.preventDefault();
+		var note = $(e.target).serialize();
 		CreateNote(note);
 	});
 
-	var tbody = document.getElementById("tbody_notes");
-	var noNotes = document.getElementsByClassName("noNotes");
-	var boxPage = document.getElementsByClassName("boxPage");
-	var notNotes = document.getElementById("notNotes");
 	// Добавление заметки
 	function CreateNote(data) {
 		$.ajax({
@@ -46,52 +33,46 @@ $(document).ready(function() {
 	};
 
 	//Сообщение "Список заметок пока пуст", когда нет добавленных заметок
-	if (tbody.rows[0] == undefined) {
-		noNotes[0].style.opacity = 1;
-		noNotes[0].style.margin = "30px auto";
-		boxPage[0].style.visibility = "hidden";
-		boxPage[1].style.visibility = "hidden";
-	} else {
-		notNotes.style.display = "none";
+	if ($("tbody tr").length === 0) {
+		$(".empty_table").css({"opacity":1, "margin":"30px auto"});
+		$(".box_page").css("visibility", "hidden");
 	};
 
-	for (var i = 0; i < tbody.rows.length; i++) {
-		tbody.rows[i].onmouseover = function() {
+	for (var i = 0; i < $("tbody tr").length; i++) {
+		$("tbody tr").eq(i).mouseover(function() {
 			this.style.backgroundColor = 'rgb(141, 181, 213)';
-		};
-		tbody.rows[i].onmouseout = function() {
+		});
+		$("tbody tr").eq(i).mouseout(function() {
 			this.style.backgroundColor = 'rgb(210, 230, 232)';
-		};
+		});
 	};
 
-	var currentPage = document.getElementById("current_page");
+	var currentPage = $(".current_page");
 	if (currentPage == null) {
 		var currentPageNum = 1;
 	} else {
 		var currentPageNum = currentPage.innerHTML;
 	}
-	tbody.onclick = function(event) {
-		var target = event.target;
-		if (target.type === "checkbox") {
-			return;
-		}
-		while (target != tbody) {
-			if (target.tagName === "TR") {
-				content_body.style.filter = 'blur(1px)';
-				backdrop.style.display = 'block';
-				backdrop.style.zIndex = '10';
-				viewNote.style.display = 'block';
-				viewNote.style.zIndex = '20';
-				var id = target.getAttribute("id");
-				GetNote(id, currentPageNum);
-			}
-		target = target.parentNode;
-		}
-	}
 
-	var info_noteName = document.getElementById("info_noteName");
-	var info_content = document.getElementById("info_content");
-	var info_created = document.getElementById("info_created");
+	$("tbody").click(function(e) {
+		var target = $(e.target);
+		var tbody = $("tbody");
+		var typeElem = $(target).attr("type");
+		if (typeElem != undefined && target[0].type === "checkbox") {
+			return;
+		} else {
+			while (target[0].nodeName != tbody[0].nodeName) {
+				if (target[0].nodeName === "TR") {
+					$(".content_body").css("filter", "blur(1px)");
+					$("#backdrop").css({"display":"block", "zIndex":10});
+					$("#view_note").css({"display":"block", "zIndex":20});
+					var id = $(target).attr("id");
+					GetNote(id, currentPageNum);
+				}
+			target = $(target).parent();
+			}
+		}
+	});
 
 	// Получение одной заметки
 	function GetNote(id, currentPageNum) {
@@ -101,24 +82,21 @@ $(document).ready(function() {
 			contentType: "application/json",
 			success: function (note) {
 				console.log("Данные получены", note);
-				info_noteName.innerHTML = note[0].note_name;
-				info_content.innerHTML = note[0].content;
-				info_created.innerHTML = note[0].createdFormatDate;
+				$("#info_note_name").html(note[0].note_name);
+				$("#info_content").html(note[0].content);
+				$("#info_created").html(note[0].created_format_date);
 			}
 		});
-	}
+	};
 	
-	$('#cancel_viewNote').click(function() {
-		content_body.style.filter = '';
-		backdrop.style.display = 'none';
-		viewNote.style.display = 'none';
-		info_noteName.innerHTML = '';
-		info_content.innerHTML = '';
-		info_created.innerHTML = '';
+	$('#cancel_view_note').click(function() {
+		$(".content_body").css("filter", "");
+		$("#backdrop").css("display", "none");
+		$("#view_note").css("display", "none");
 	});
 
-	$("#delNote").click(function() {
-		var check = document.getElementsByClassName("checkbox");
+	$("#del_note").click(function() {
+		var check = $(".checkbox");
 		for (var i = 0; i < check.length; i++) {
 			if (check[i].checked === true) {
 				var noteId = (check[i].id.toString()).substr(3);

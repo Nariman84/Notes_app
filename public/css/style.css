@@ -9,7 +9,7 @@ body {
 	font-size: 12px;
 	background-color: rgb(33, 62, 72);
 }
-.bg {
+.background_body {
 	position: absolute;
 	background: url(../images/photo_note_10.jpg);
 	background-color: rgb(33, 62, 72);
@@ -20,7 +20,7 @@ body {
 	bottom: 0;
 	background-attachment: fixed;
 }
-#content_body {
+.content_body {
 	position: relative;
 	display: flex;
 	flex-direction: column;
@@ -35,63 +35,59 @@ h1 {
 	text-align: center;
 	margin: 10px auto;
 	color: white;
-}
-.registr {
-	max-width: 450px;
-	position: absolute;
-	left: 10%;
+	line-height: 60px;
 }
 .container {
 	max-width: 1140px;
 	margin: auto;
 }
-.container_1 {
-	max-width: 1140px;
-	margin: auto;
-}
-#signupOrAuthor{
+.login_header{
 	width: 550px;
-	max-height: 60px;
+	height: 60px;
 	background: #d2e6e8;
 	border-radius: 15px 15px 0 0;
-	box-shadow: 0px 0px 5px 0px;
+	box-shadow: 0px 0px 30px 0px;
 	position: absolute;
 	left: 0;
 	right: 0;
 	margin: auto;
 	top: 25%;
 	z-index: 1;
-}
-#regbar {
-	width: 100%;
 	overflow: hidden;
+}
+.signup_header{
+	width: 550px;
 	height: 60px;
-	position: relative;
+	background: #d2e6e8;
 	border-radius: 15px 15px 0 0;
 	box-shadow: 0px 0px 30px 0px;
-}
-.reg_menu {
-	display: inline-block;
-}
-#signup_bar {
 	position: absolute;
-	bottom: 0;
 	left: 0;
-	width: 100%;
-	height: 100%;
-	background-color: #ff5252;
+	right: 0;
+	margin: auto;
+	top: 25%;
 	z-index: 1;
+	overflow: hidden;
 }
-#login_bar {
-	position: absolute;
-	bottom: 0;
+.login_title {
+	position: relative;
+	bottom: 10px;
 	left: 0;
 	width: 100%;
 	height: 100%;
 	background-color: #4caf50;
 	z-index: 1;
 }
-.box-1 {
+.signup_title {
+	position: relative;
+	bottom: 10px;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #ff5252;
+	z-index: 1;
+}
+.signup_box {
 	width: 550px;
 	background: #d2e6e8;
 	border: 1px solid #efffe8;
@@ -105,7 +101,7 @@ h1 {
 	margin: auto;
 	top: 30%;
 }
-.box-2 {
+.login_box {
 	width: 550px;
 	background: #d2e6e8;
 	border: 1px solid #efffe8;
@@ -119,7 +115,7 @@ h1 {
 	margin: auto;
 	top: 30%;
 }
-#wrong {
+#err_auth {
 	text-align: center;
 	color: red;
 	margin: 10px;
@@ -142,10 +138,10 @@ h1 {
 label {
     line-height: 30px;
 }
-.form-row {
+.form_row {
 	overflow: hidden;
 }
-.form-row input {
+.form_row input {
 	float: right;
 	height: 20px;
 	margin: 5px;
@@ -157,17 +153,21 @@ label {
 	border-radius: 10px;
 	outline-style: none;
 }
-.reg-form {
+.reg_form {
 	width: 450px;
+	position: absolute;
+	left: 10%;
 }
-.login-form {
+.login_form {
 	width: 450px;
+	position: absolute;
+	left: 10%;
 }
-.note-form {
+.notes_form {
 	width: 550px;
 	margin: 10px auto;
 }
-.form-row button {
+.form_row button {
 	padding: 5px;
 	height: 30px;
 	width: 100px;
@@ -178,24 +178,21 @@ label {
 	background: #f4a460;
 	color: black;
 	font-family: 'Comic Sans MS';
-	margin: 10px 5px auto;
+	display: block;
+	margin: 10px auto auto;
 	outline-style: none;
 	cursor: pointer;
 }
-#button {
-	text-align: center;
-	margin-top: 10px;
-}
-.form-row button[type=button]:hover {
+.form_row button[type=button]:hover {
 	background: #de9150;
 }
-.form-row button[type=submit]:hover {
+.form_row button[type=submit]:hover {
 	background: #de9150;
 }
-.form-row button[type=reset]:hover {
+.form_row button[type=reset]:hover {
 	background: #de9150;
 }
-div#boxTable {
+div#box_table {
 	text-align: center;
 }
 .table_notes {
@@ -224,7 +221,7 @@ td > div {
 input.checkbox {
     transform: scale(1.2);
 }
-.heading_of_table {
+.row_thead {
 	height: 50px;
 	font-weight: bold;
 	background-color: #ff5252;
@@ -251,7 +248,7 @@ button#add_note {
 button#add_note:hover {
 	background: #4caf50;
 }
-.newNote {
+.new_note {
 	position: fixed;
 	left: 50%;
 	top: 50%;
@@ -310,7 +307,7 @@ input#save_note {
 input#save_note:hover {
 	background-color: #2e9032;
 }
-button#cancel_addNote {
+button#cancel_add_note {
 	margin: 10px 5px 0;
 	width: 70px;
 	height: 30px;
@@ -322,7 +319,7 @@ button#cancel_addNote {
 	box-shadow: inset 0px 0px 5px 0px;
 	cursor: pointer;
 }
-button#cancel_addNote:hover {
+button#cancel_add_note:hover {
 	background-color: #2e9032;
 }
 #backdrop {
@@ -335,30 +332,28 @@ button#cancel_addNote:hover {
 	right: 0;
 	left: 0;
 }
-.logOut {
-	margin: 10px 0;
+.in_out_button {
+	margin: 2px 50px 0;
 	padding: 5px 15px;
-	background-color: #ff5252;
 	border-radius: 10px;
 	color: white;
 	text-decoration: none;
 	outline-style: none;
 	box-shadow: 0px 0px 5px 0px black;
+	text-align: center;
+	float: right;
+	width: 70px;
 }
-a#logOut:hover {
+#logout_button {
+	background-color: #ff5252;
+}
+#logout_button:hover {
 	background-color: #ff352d;
 }
-.logIn {
-	margin: 10px 0;
-	padding: 5px 15px;
+#login_button {
 	background-color: #4caf50;
-	border-radius: 10px;
-	color: white;
-	text-decoration: none;
-	outline-style: none;
-	box-shadow: 0px 0px 5px 0px black;
 }
-a#logIn:hover {
+#login_button:hover {
 	background-color: #2e9032;
 }
 div#username {
@@ -368,16 +363,11 @@ div#username {
 	padding-left: 50px;
 }
 #logo {
-	font-size: 25px;
+/*	font-size: 25px;
 	color: #ef4d4d;
 	font-family: 'Permanent Marker', cursive;
 	padding-left: 50px;
-	text-align: left;
-	margin-top: 2px;
-}
-#logged-in-username {
-	text-align: center;
-	margin: 3px auto;
+	text-align: left;*/
 }
 div#header {
 	background-color: rgba(253, 237, 212, 0.4);
@@ -388,10 +378,7 @@ div#header {
 	z-index: 2;
 	margin-bottom: 40px;
 }
-footer {
-	/*position: absolute;*/
-	left: 10%;
-	bottom: 0;
+.footer {
 	margin: auto;
 	margin-top: 40px;
 	flex: 0 0 auto;
@@ -402,15 +389,8 @@ footer {
 	box-shadow: 0px 0px 20px 10px;
 	z-index: 2;
 }
-#buttonLogOut {
-	margin-top: 15px;
-	text-align: right;
-	padding-right: 50px;
-}
-#notNotes {
+.empty_table {
 	margin: 3%;
-}
-span.noNotes {
 	text-align: center;
 	opacity: 0;
 	margin: 0px auto;
@@ -429,8 +409,9 @@ div#pages_top, div#pages_bottom {
 	top: 0;
 	z-index: 5;
 	overflow: hidden;
+	margin: auto;
 }
-.pageNum {
+.page_num {
 	border: 1px solid white;
 	width: 20px;
 	height: 20px;
@@ -443,7 +424,7 @@ div#pages_top, div#pages_bottom {
 	line-height: 17px;
 	color: white;
 }
-.pageNum:hover {
+.page_num:hover {
 	background-color: firebrick;
 }
 .current_page {
@@ -462,7 +443,7 @@ div#pages_top, div#pages_bottom {
 	color: black;
 
 }
-.lastPage, .firstPage {
+.last_page, .first_page {
 	border: 1px solid white;
 	width: 60px;
 	height: 20px;
@@ -475,7 +456,7 @@ div#pages_top, div#pages_bottom {
 	line-height: 17px;
 	color: white;
 }
-.hidePage {
+.hide_page {
 	border: 1px solid white;
 	width: 25px;
 	height: 20px;
@@ -487,7 +468,7 @@ div#pages_top, div#pages_bottom {
 	margin: 2.5px;
 	line-height: 17px;
 }
-.boxPage {
+.box_page {
 	max-width: 75%;
 	margin: 25px auto;
 	display: flex;
@@ -508,13 +489,7 @@ div#button_top {
 	flex-flow: row nowrap;
 	color: white;
 }
-div#pageNotes {
-	line-height: 25px;
-	margin: auto 5px;
-	font-size: 15px;
-	text-decoration: underline;
-}
-.viewNote {
+.view_note {
 	position: fixed;
 	left: 50%;
 	top: 50%;
@@ -527,12 +502,12 @@ div#pageNotes {
 	border-radius: 15px;
 	box-shadow: 0px 0px 10px 5px;
 }
-#descriptionNote {
+#description_note {
 	width: 550px;
 	margin: 10px auto;
 	text-align: left;
 }
-#info_noteName {
+#info_note_name {
 	min-height: 20px;
 	background-color: #efffe8;
 	padding: 0 5px;
@@ -543,7 +518,7 @@ div#pageNotes {
 	min-height: 20px;
 	max-height: 270px;
 	overflow: auto;
-	padding: 0 5px;
+	padding: 0px 5px;
 	background: #efffe8;
 	border: 1px solid #efffe8;
 	box-shadow: 0px 0px 5px 0px;
@@ -555,7 +530,7 @@ div#pageNotes {
 	border: 1px solid #efffe8;
 	box-shadow: 0px 0px 5px 0px;
 }
-button#cancel_viewNote {
+button#cancel_view_note {
 	font-family: 'Comic Sans MS';
 	margin: 10px auto;
 	width: 70px;
@@ -567,11 +542,11 @@ button#cancel_viewNote {
 	box-shadow: inset 0px 0px 5px 0px;
 	cursor: pointer;
 }
-button#cancel_viewNote:hover {
+button#cancel_view_note:hover {
 	background-color: #2e9032;
 }
 
-button#delNote {
+button#del_note {
 	padding: 5px;
 	height: 35px;
 	width: 90px;
@@ -585,13 +560,13 @@ button#delNote {
 	outline-style: none;
 	cursor: pointer;
 }
-button#delNote:hover {
+button#del_note:hover {
 	background: #ff5252;
 }
-#container_mail {
+.box_mail {
 	text-align: right;
 	padding-right: 50px;
-	margin-top: 12px;
+	margin-top: 5px;
 }
 .mailto {
 	text-decoration: none;
@@ -601,72 +576,73 @@ button#delNote:hover {
 	font-size: 14px;
 }
 
-#my_logo {
+.logo {
 	box-shadow: 0px 0px 20px 0px white;
 	border-radius: 18px;
 	background-color: rgba(255, 255, 255, 0.1);
-	width: 140px;
+	width: 135px;
 	text-align: center;
+	font-size: 25px;
+	color: #ef4d4d;
+	font-family: 'Permanent Marker', cursive;
+	margin-left: 50px;
+	margin-top: -4px;
 }
-
-.bg_404 {
-	position: absolute;
-	background: url(../images/photo_note_10.jpg);
-	background-size: 100% auto;
-	background-repeat: no-repeat;
-	z-index: 0;
-	width: 100%;
-	top: 0;
-	bottom: 0;
-	filter: blur(6px);
+.container_footer {
+	margin-top: -2px;
 }
 .header_404 {
 	width: 550px;
-	height: 60px;
-	background: #d2e6e8;
-	border-radius: 15px 15px 0 0;
-	box-shadow: 0px 0px 30px 0px;
-	position: absolute;
+    height: 60px;
+    background: #ff5252;
+    border-radius: 15px 15px 0 0;
+    box-shadow: 0px 0px 30px 0px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    top: 25%;
+    z-index: 1;
+    overflow: hidden;
+}
+.title_404 {
+	position: relative;
+	bottom: 10px;
 	left: 0;
-	right: 0;
-	margin: auto;
-	top: 25%;
-	z-index: 2;
+	width: 100%;
+	height: 100%;
 	background-color: #ff5252;
+	z-index: 1;
 }
 .box_404 {
 	width: 550px;
-	background: #d2e6e8;
-	border-radius: 0 0 15px 15px;
-	box-shadow: 0px 0px 5px 0px;
-	height: 280px;
-	padding-top: 50px;
-	z-index: 1;
-	position: absolute;
-	left: 0;
-	right: 0;
-	margin: auto;
-	top: 30%;
-}
-.content_404 {
-	max-width: 1140px;
-	margin: auto;
+    background: #d2e6e8;
+    border: 1px solid #efffe8;
+    border-radius: 0 0 15px 15px;
+    box-shadow: 0px 0px 5px 0px;
+    height: 280px;
+    padding-top: 50px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    top: 30%;
 }
 .error_404 {
 	text-align: left;
 	font-size: 12px;
 	margin: auto 50px;
 }
-.description {
+.description_404 {
 	font-size: 16px;
 	margin: auto 20px;
 	text-align: center;
 }
-.goNotes {
+.go_notes {
     margin: 50px auto;
 	text-align: center;
 }
-.goNotes a {
+.go_notes a {
 	font-size: 12px;
     text-decoration: none;
     color: #4caf50;

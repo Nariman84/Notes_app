@@ -8,58 +8,58 @@
 		<link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
 	</head>
 	<body>
-		<div class="bg"></div>
-		<div id="content_body">
+		<div class="background_body"></div>
+		<div class="content_body">
 			<div id="main">
 				<div id="backdrop"></div>
 				<div class="container" id="header">
-					<div class="col-12" id="logged-in-username">
+					<div class="col_12">
 						{{#user}}
-						<div class="col-6" id="username">
+						<div class="col_6" id="username">
 							<u>Имя пользователя:</u>
 							<span style="color: #ff5252">{{user.firstName}} {{user.lastName}}</span>
 						</div>
 						{{/user}}
 						{{^user}}
-						<div class="col-6" id="logo">
-							<div id="my_logo">
+						<div class="col_6">
+							<div class="logo">
 								<b>My Notes</b>
 							</div>
 						</div>
 						{{/user}}
-						<div class="col-6" id="buttonLogOut">
+						<div class="col_6">
 							{{#user}}
-							<a href="/logout" class="logOut" id="logOut"><b>Выйти</b></a>
+							<a href="/logout" class="in_out_button" id="logout_button"><b>Выйти</b></a>
 							{{/user}}
 							{{^user}}
-							<a href="/login" class="logIn" id="logIn"><b>Войти</b></a>
+							<a href="/login" class="in_out_button" id="login_button"><b>Войти</b></a>
 							{{/user}}
 						</div>
 					</div>
 				</div>
 				<div class="container" id="pages_top">
 					{{#user}}
-					<div class="bg"></div>
+					<div class="background_body"></div>
 					<div class="container" id="button_top">
 						<div>
 							<button type='button' class="add_note" id="add_note"><b>Добавить заметку</b></button>
-							<button type='button' class="delNote" id="delNote"><b>Удалить</b></button>
+							<button type='button' class="del_note" id="del_note"><b>Удалить</b></button>
 						</div>
 					</div>
 
 					
-					<div class="boxPage">
+					<div class="box_page">
 						<div class="pagination_container"></div>
 					</div>
 					{{/user}}
 				</div>
 
-				<div class="container" id="boxTable" style="clear: both">
+				<div class="container" id="box_table" style="clear: both">
 					<div class="table_notes">
 						<h1>Список заметок</h1>
 						<table align="center" id="notes" class="notes">
 							<thead id="table_head">
-								<tr id="heading_of_table" class="heading_of_table">
+								<tr id="row_thead" class="row_thead">
 									<td width="5px"></td>
 									<td width="20%">Дата создания</td>
 									<!-- <td width="20%">Количество времени с момента создания</td> -->
@@ -70,12 +70,11 @@
 
 							<tbody id="tbody_notes">
 								{{#notes}}
-									<tr class="trfromDb" id="{{_id}}">
+									<tr class="row_tbody" id="{{_id}}">
 										<td id="checkbox">
 											<input type="checkbox" id="cb_{{_id}}" name="checkbox" class="checkbox">
 										</td>
-										<td id="tdfromDb">{{createdFormatDate}}</td>
-										<!-- <td id="time_passed" class="fromDb">{{diff_Time}}</td> -->
+										<td class="created_date">{{created_format_date}}</td>
 										<td>
 											<div>{{note_name}}</div>
 										</td>
@@ -88,8 +87,8 @@
 						</table>
 					</div>
 					{{#user}}
-					<div id="notNotes">
-						<span class="noNotes">Список заметок пока пуст</span>
+					<div class="empty_table">
+						<span>Список заметок пока пуст</span>
 					</div>
 					{{/user}}
 
@@ -99,55 +98,68 @@
 						</div>
 						{{/user}}
 
-					<div class="container" id="pages_bottom">
+					<div id="pages_bottom">
 						{{#user}}
-						<div class="boxPage">
+						<div class="box_page">
 							<div class="pagination_container"></div>
 						</div>
 						{{/user}}
 					</div>
 				</div>
 			</div>
-			{{>footer}}
+			<div class="footer">
+				<div class="col_12">
+					<div class="col_6">
+						<div class="logo">
+							<span>My Notes</span>
+						</div>
+					</div>
+					<div class="col_6">
+						<div class="box_mail">
+							<a href="mailto:nariman84@list.ru?subject=My notes" class="mailto" id="mailto">Напишите нам</b></a>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-			<div class="container_1">
-				<div class="newNote" id="newNote">
-					<form id="notesForm" name="noteForm" class='note-form'>
+			<div class="container">
+				<div class="new_note" id="new_note">
+					<form id="notes_form" name="notes_form" class='notes_form'>
 						<section>
 							<input type='text' id='note_name' class='note_name' name="note_name" placeholder="Введите название заметки" required>
 						</section>
 						<section>
-							<input type='text' id='note_theme' class='noteTheme' name="note_theme" placeholder="Введите тему заметки">
+							<input type='text' id='note_theme' class='note_theme' name="note_theme" placeholder="Введите тему заметки">
 						</section>
 						<section>
 							<textarea id='content' class='content' name='content' placeholder="Введите текст Вашей заметки"></textarea>
 						</section>
 						<section>
 							<input type="submit" class="save_note" id="save_note" value='Сохранить заметку'>
-							<button type='button' class="cancel_addNote" id="cancel_addNote">Отмена</button>
+							<button type='button' class="cancel_add_note" id="cancel_add_note">Отмена</button>
 						</section>
 					</form>
 				</div>
 			</div>
 		
-			<div class="container_1">
-				<div class="viewNote" id="viewNote">
-					<div id="descriptionNote">
-						<div class="col-12">
-							<div class="col-3"><b>Название заметки: </b></div>
-							<div class="col-9" id="info_noteName"></div>
+			<div class="container">
+				<div class="view_note" id="view_note">
+					<div id="description_note">
+						<div class="col_12">
+							<div class="col_3"><b>Название заметки: </b></div>
+							<div class="col_9" id="info_note_name"></div>
 						</div>
-						<div class="col-12">
-							<div class="col-3"><b>Текст заметки </b></div>
-							<div class="col-9" id="info_content"></div>
+						<div class="col_12">
+							<div class="col_3"><b>Текст заметки </b></div>
+							<div class="col_9" id="info_content"></div>
 						</div>
-						<div class="col-12">
-							<div class="col-3"><b>Дата создания </b></div>
-							<div class="col-9" id="info_created"></div>	
+						<div class="col_12">
+							<div class="col_3"><b>Дата создания </b></div>
+							<div class="col_9" id="info_created"></div>	
 						</div>			
 					</div>
-					<div class="col-12" id="okey">
-						<button type='button' class="cancel_viewNote" id="cancel_viewNote">OK</button>
+					<div class="col_12" id="okey">
+						<button type='button' class="cancel_view_note" id="cancel_view_note">OK</button>
 					</div>
 				</div>
 			</div>
@@ -161,7 +173,7 @@
 					var divPagination = document.getElementsByClassName("pagination_container");
 					if (Number("{{pages}}") > 0) {
 						if (Number("{{pages}}") === 1) {
-							var boxPage = document.getElementsByClassName("boxPage");
+							var boxPage = document.getElementsByClassName("box_page");
 							boxPage[0].style.visibility = "hidden";
 							boxPage[1].style.visibility = "hidden";
 						}
@@ -172,7 +184,7 @@
 								var pageNumber = document.createElement('a');
 								pageNumber.setAttribute("href", "/notes/" + i);
 								pageNumber.innerHTML = i;
-								pageNumber.className = "pageNum";
+								pageNumber.className = "page_num";
 								divPagination[j].append(pageNumber);
 
 								if (pageNumber.innerHTML === "{{current}}") {
@@ -187,7 +199,7 @@
 								var pageNumber = document.createElement('a');
 								pageNumber.setAttribute("href", "/notes/" + i);
 								pageNumber.innerHTML = i;
-								pageNumber.className = "pageNum";
+								pageNumber.className = "page_num";
 								divPagination[j].append(pageNumber);
 
 								if (pageNumber.innerHTML === "{{current}}") {
@@ -202,7 +214,7 @@
 								var pageNumber = document.createElement('a');
 								pageNumber.setAttribute("href", "/notes/" + i);
 								pageNumber.innerHTML = i;
-								pageNumber.className = "pageNum";
+								pageNumber.className = "page_num";
 								divPagination[j].append(pageNumber);
 
 								if (pageNumber.innerHTML === "{{current}}") {
@@ -221,7 +233,7 @@
 								var pageNumber = document.createElement('a');
 								pageNumber.setAttribute("href", "/notes/" + i);
 								pageNumber.innerHTML = i;
-								pageNumber.className = "pageNum";
+								pageNumber.className = "page_num";
 								divPagination[j].append(pageNumber);
 
 								if (pageNumber.innerHTML === "{{current}}") {
@@ -234,10 +246,10 @@
 						if ((Number('{{current}}') + 2) < Number("{{pages}}") && Number("{{pages}}") > 5) {
 							var lastPage = document.createElement('a');
 							var hidePage = document.createElement('a');
-							hidePage.className = "hidePage";
+							hidePage.className = "hide_page";
 							hidePage.innerHTML = "...";
 							lastPage.innerHTML = "Last";
-							lastPage.className = "lastPage";
+							lastPage.className = "last_page";
 							lastPage.setAttribute("href", "/notes/{{pages}}");
 							divPagination[j].append(lastPage);
 							divPagination[j].insertBefore(hidePage, lastPage);
@@ -246,10 +258,10 @@
 						if (Number("{{current}}") > 3 && Number("{{pages}}") > 5) {
 							var firstPage = document.createElement('a');
 							var hidePage = document.createElement('a');
-							hidePage.className = "hidePage";
+							hidePage.className = "hide_page";
 							hidePage.innerHTML = "...";
 							firstPage.innerHTML = "First";
-							firstPage.className = "firstPage";
+							firstPage.className = "first_page";
 							firstPage.setAttribute("href", "/notes/1");
 							divPagination[j].prepend(hidePage);
 							divPagination[j].insertBefore(firstPage, hidePage);

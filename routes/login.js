@@ -28,14 +28,14 @@ exports.post = function(request, response, next) {
 					var wrongPass = "Пароль неверный!"
 					console.log(wrongPass);
 					response.render("login_page", {
-						wrong: wrongPass
+						err_auth: wrongPass
 					})
 				}
 			} else {
 				var noUser = "Пользователь с таким e-mail не зарегистрирован!";
 				console.log(noUser);
 				response.render("login_page", {
-						wrong: noUser
+						err_auth: noUser
 					})
 			}
 		}
