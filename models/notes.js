@@ -5,7 +5,7 @@ var User = require("./users");
 var noteSchema = new Schema({
 	_id: Schema.Types.ObjectId,
 	note_name: {
-		type: String
+		type: String,
 		required: true,
 		unique: true
 	},

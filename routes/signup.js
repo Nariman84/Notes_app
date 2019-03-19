@@ -9,8 +9,8 @@ exports.post = function(request, response) {
 	if (!request.body) return response.sendFile(400);
 	var user = new User({
 		_id: new mongoose.Types.ObjectId(),
-		firstName: request.body.firstName,
-		lastName: request.body.lastName,
+		firstName: request.body.first_name,
+		lastName: request.body.last_name,
 		email: request.body.email,
 		password: request.body.password
 	});
